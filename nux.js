@@ -264,6 +264,9 @@ function modifyTitles() {
     for (const element of elements) {
         if (!element.dataset.modified) {  // Check if already modified to prevent redundant changes
             element.innerText = element.innerText.replace(/\bI'm/gi, "We're")
+                                                .replace(/\bI’m/gi, "We're")
+
+                
                                                 .replace(/\bI\b/g, "We")       // Replace standalone "I"
                                                  .replace(/\bMy\b/gi, "Our")    // Replace "My" (case insensitive)
                                                  .replace(/\bMe\b/gi, "us");    // Replace "Me" (case insensitive)
