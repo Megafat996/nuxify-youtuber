@@ -8,3 +8,5 @@ To setup this extension without using the firefox or chrome addon store you will
 
 Firefox: https://www.youtube.com/watch?v=XqWMDv411k0
 Chrome: https://www.youtube.com/watch?v=yNFwFQrc27Q
+
+Right now there is a bug where if you use the search bar twice it will display the results from the first search and not the second search, this can be fixed by refreshing the page 
