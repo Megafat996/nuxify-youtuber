@@ -260,15 +260,15 @@ Main()
 /* My code */
 // Function to modify video titles
 function modifyTitles() {
-    let elements = document.querySelectorAll("#video-title");
-    for (const element of elements) {
+    const elements = document.querySelectorAll("#video-title");
+    elements.forEach(element => {
         if (!element.dataset.modified) {  // Check if already modified to prevent redundant changes
             element.innerText = element.innerText.replace(/\bI\b/g, "We")       // Replace standalone "I"
                                                  .replace(/\bMy\b/gi, "Our")    // Replace "My" (case insensitive)
                                                  .replace(/\bMe\b/gi, "us");    // Replace "Me" (case insensitive)
             element.dataset.modified = "true";  // Mark as modified
         }
-    }
+    });
 }
 
 // Debounce function to limit how often modifyTitles runs
@@ -282,33 +282,22 @@ function debounce(func, wait) {
 
 const debouncedModifyTitles = debounce(modifyTitles, 200);
 
-// Function to detect URL changes using History API
-function onUrlChange() {
-    debouncedModifyTitles(); // Run the debounced function
-}
-
-// Hook into history changes
-(function (history) {
-    const pushState = history.pushState;
-    const replaceState = history.replaceState;
-    
-    history.pushState = function () {
-        pushState.apply(history, arguments);
-        onUrlChange();
-    };
-    
-    history.replaceState = function () {
-        replaceState.apply(history, arguments);
-        onUrlChange();
-    };
-})(window.history);
+// Detect URL changes and call modifyTitles
+let lastUrl = location.href;
+new MutationObserver(() => {
+    const currentUrl = location.href;
+    if (currentUrl !== lastUrl) {
+        lastUrl = currentUrl;
+        debouncedModifyTitles();
+    }
+}).observe(document, { subtree: true, childList: true });
 
 // Initial modification on page load
 modifyTitles();
 
-// Observe a specific part of the page for dynamic content changes
-const targetNode = document.querySelector('ytd-app'); // Adjust this to the most specific container relevant
+// Observe for dynamic content changes
+const observer = new MutationObserver(debouncedModifyTitles);
+const targetNode = document.querySelector('#contents'); // Narrowed down to main content container
 if (targetNode) {
-    const observer = new MutationObserver(debouncedModifyTitles);
     observer.observe(targetNode, { childList: true, subtree: true });
 }
