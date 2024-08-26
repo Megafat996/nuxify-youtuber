@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Nuxtakufy",
+    "version": "1.7.1",
+    "icons": {
+        "96": "icon.png"
+    },
+    "description": "Modify YouTube thumbnails to include Nuxtaku",
+    "action": {
+        "default_popup": "settings.html"
+    },
+    "permissions": [
+        "storage"
+    ],
+    "host_permissions": ["*://*.youtube.com/*"],
+    "content_scripts": [{
+        "matches": ["*://*.youtube.com/*"],
+        "js": ["nux.js"],
+        "run_at": "document_idle"
+    }],
+    "web_accessible_resources": [{
+        "resources": [
+            "images/*.png",
+            "images/*.json"
+        ],
+        "matches": [
+            "*://*/*"
+        ]
+    }]
+}
