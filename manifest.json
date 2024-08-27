@@ -1,14 +1,11 @@
 {
     "manifest_version": 3,
     "name": "YouTube Nuxtakufy",
-    "version": "1.7.1",
+    "version": "1.0.1",
     "icons": {
         "96": "icon.png"
     },
     "description": "Modify YouTube thumbnails to include Nuxtaku",
-    "action": {
-        "default_popup": "settings.html"
-    },
     "permissions": [
         "storage"
     ],
