@@ -8,7 +8,7 @@ Have you ever wanted to always feel like you were going to watch a nuxtaku video
 Mostly using code from MagicJinn's Mrbeast extension: https://github.com/MagicJinn/MrBeastify-Youtube?tab=readme-ov-file
 MagicJinn's kofi: https://ko-fi.com/magicjinn
 
-[Chrome Download]([https://pages.github.com/](https://chromewebstore.google.com/detail/youtube-nuxtakufy/labliomnakjiabhdncgcgccfnlndlnpp?authuser=1&hl=en))
+[Chrome Download](https://chromewebstore.google.com/detail/youtube-nuxtakufy/labliomnakjiabhdncgcgccfnlndlnpp?authuser=1&hl=en)
 
 
 
