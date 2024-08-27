@@ -262,18 +262,26 @@ Main()
 function modifyTitles() {
     let elements = document.querySelectorAll("#video-title");
     for (const element of elements) {
-        if (!element.dataset.modified) {  // Check if already modified to prevent redundant changes
-            element.innerText = element.innerText.replace(/\bI'm/gi, "We're")
-                                                .replace(/\bI’m/gi, "We're")
+        let originalText = element.innerText;
 
-                
-                                                .replace(/\bI\b/g, "We")       // Replace standalone "I"
-                                                 .replace(/\bMy\b/gi, "Our")    // Replace "My" (case insensitive)
-                                                 .replace(/\bMe\b/gi, "us");    // Replace "Me" (case insensitive)
-            element.dataset.modified = "true";  // Mark as modified
+        // Check if the text contains any of the target phrases
+        if (!/\bI'm\b|\bI’m\b|\bI\b|\bMy\b|\bMe\b/i.test(originalText)) {
+            continue; // Skip to the next element if none of the phrases are found
+        }
+
+        let modifiedText = originalText.replace(/\bI'm/gi, "We're")
+                                       .replace(/\bI’m/gi, "We're")
+                                       .replace(/\bI\b/g, "We")
+                                       .replace(/\bMy\b/gi, "Our")
+                                       .replace(/\bMe\b/gi, "us");
+
+        // Update text only if it has changed
+        if (originalText !== modifiedText) {
+            element.innerText = modifiedText;
         }
     }
 }
+
 
 // Debounce function to limit how often modifyTitles runs
 function debounce(func, wait) {
